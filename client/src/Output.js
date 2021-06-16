@@ -26,7 +26,7 @@ function Output(props) {
         }
       })
       .catch((err) => {
-        alert(err);
+        history.push('/');
       });
   }, []);
   return (
