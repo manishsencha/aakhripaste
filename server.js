@@ -6,13 +6,13 @@ const cors = require("cors");
 const { nanoid } = require("nanoid");
 const PORT = process.env.PORT || 3001;
 const data = require("./db");
-require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, "client/build")));
+require("dotenv").config();
 mongoose
-  .connect("mongodb://localhost", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
