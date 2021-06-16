@@ -7,14 +7,18 @@ import { useHistory } from "react-router";
 function Output(props) {
   const link = props.match.params.id;
   const history = useHistory();
-  const [code, setCode] = useState(null);
+  const [code, setCode] = useState("");
   const [language] = useState("txt");
   useEffect(async () => {
+    const uri = window.location.protocol + "//" + window.location.host;
+    console.log(uri);
     await axios
-      .get(`http://localhost:3001/${link}`)
+      .post(`/${link}`)
       .then(async (res) => {
         // console.log(res);
+        console.log(res);
         const c = await res.data.code;
+        console.log(c);
         if (res.status !== 200) {
           history.push("/");
         } else {
@@ -25,7 +29,6 @@ function Output(props) {
         alert(err);
       });
   }, []);
-
   return (
     <Editor
       defaultLanguage={language}

@@ -1,7 +1,7 @@
 {
   "name": "aakhripaste",
   "version": "1.0.0",
-  "description": "backend for aakhripaste",
+  "description": "A clone of pastebin",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "runDev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "manishsencha",
+  "author": "manishsencha <manishsencha2001@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

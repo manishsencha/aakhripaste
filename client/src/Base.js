@@ -13,7 +13,7 @@ function Base() {
       e.preventDefault();
       console.log(code);
       await axios
-        .post("http://localhost:3001", { code: code })
+        .post("/", { code: code })
         .then((res) => {
           console.log(res);
           setCode("");

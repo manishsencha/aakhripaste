@@ -1,13 +1,16 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { nanoid } = require("nanoid");
 const PORT = process.env.PORT || 3001;
 const data = require("./db");
+require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.static(path.resolve(__dirname, "client/build")));
 mongoose
   .connect("mongodb://localhost", {
     useNewUrlParser: true,
@@ -20,11 +23,11 @@ mongoose
     console.log("Failed to connect to database.\n Error : " + err);
   });
 
-app.get("/", (req, res) => {
-  res.send("<h1>Server has started</h1>");
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
 });
 
-app.get("/:id", async (req, res) => {
+app.post("/:id", async (req, res) => {
   const code = await data.findOne({ link: req.params.id });
   if (code === null) return res.sendStatus(404);
   return res.send({ code: code.code, languange: code.languange });
