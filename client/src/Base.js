@@ -11,7 +11,9 @@ function Base() {
   const handleSubmit = async (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === "s") {
       e.preventDefault();
+
       console.log(code);
+      if(code.trim() === "") return;
       await axios
         .post("/", { code: code })
         .then((res) => {
